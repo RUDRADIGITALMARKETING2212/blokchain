@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>🌿 CarbonChainX | AI Carbon Footprint Tracker</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+  <style>
+    /* Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Poppins", sans-serif;
+    }
+
+    body {
+      background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+      color: white;
+      overflow-x: hidden;
+    }
+
+    /* Navbar */
+    nav {
+      width: 100%;
+      padding: 15px 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 1000;
+    }
+
+    nav .logo {
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: #00ffcc;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    nav ul {
+      display: flex;
+      gap: 20px;
+      list-style: none;
+    }
+
+    nav ul li a {
+      text-decoration: none;
+      color: white;
+      font-weight: 600;
+      transition: 0.3s;
+    }
+
+    nav ul li a:hover {
+      color: #00ffcc;
+    }
+
+    /* Hero Section */
+    .hero {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 100px 20px 40px;
+      text-align: center;
+    }
+
+    .hero-title {
+      font-size: 2.5rem;
+      font-weight: 800;
+      margin-bottom: 10px;
+      background: linear-gradient(45deg, #00ffcc, #00c6ff);
+      -webkit-background-clip: text;
+      color: transparent;
+      animation: glowText 3s infinite alternate;
+    }
+
+    @keyframes glowText {
+      from {
+        text-shadow: 0 0 10px #00ffcc;
+      }
+      to {
+        text-shadow: 0 0 25px #00c6ff;
+      }
+    }
+
+    .hero-subtitle {
+      font-size: 1.1rem;
+      max-width: 600px;
+      margin-bottom: 25px;
+      opacity: 0.9;
+    }
+
+    .hero-btns {
+      display: flex;
+      gap: 15px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .btn {
+      padding: 12px 30px;
+      border: none;
+      border-radius: 30px;
+      font-size: 1rem;
+      font-weight: 700;
+      background: linear-gradient(45deg, #00ffcc, #00c6ff);
+      color: #fff;
+      cursor: pointer;
+      box-shadow: 0 5px 20px rgba(0, 255, 200, 0.5);
+      transition: 0.3s ease;
+    }
+
+    .btn:hover {
+      transform: scale(1.08);
+      box-shadow: 0 8px 30px rgba(0, 255, 200, 0.8);
+    }
+
+    /* Lottie Animation */
+    .hero-animation {
+      margin-top: 30px;
+      max-width: 400px;
+      width: 100%;
+    }
+
+    /* Features Section */
+    .features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 20px;
+      padding: 40px 20px;
+      max-width: 1100px;
+      margin: auto;
+    }
+
+    .feature-card {
+      background: rgba(255, 255, 255, 0.07);
+      padding: 20px;
+      border-radius: 20px;
+      backdrop-filter: blur(10px);
+      text-align: center;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+      transition: 0.3s ease;
+      cursor: pointer;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 10px 30px rgba(0, 255, 200, 0.5);
+    }
+
+    .feature-card i {
+      font-size: 2rem;
+      color: #00ffcc;
+      margin-bottom: 8px;
+    }
+
+    .feature-card h3 {
+      font-size: 1.1rem;
+      margin-bottom: 5px;
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 20px;
+      margin-top: 20px;
+      font-size: 0.9rem;
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(10px);
+    }
+
+    /* Mobile Responsive */
+    @media (max-width: 768px) {
+      nav ul {
+        display: none;
+      }
+
+      .hero-title {
+        font-size: 1.8rem;
+      }
+
+      .hero-subtitle {
+        font-size: 1rem;
+      }
+
+      .btn {
+        padding: 10px 22px;
+        font-size: 0.9rem;
+      }
+
+      .features {
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <nav>
+    <div class="logo">
+      🌿 CarbonChainX
+    </div>
+    <ul>
+      <li><a href="#">Home</a></li>
+      <li><a href="#">Features</a></li>
+      <li><a href="#">Dashboard</a></li>
+      <li><a href="#">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <h1 class="hero-title">Track • Reduce • Offset Carbon</h1>
+    <p class="hero-subtitle">
+      AI-powered platform to monitor, reduce, and offset your carbon footprint 🌎.  
+      Join CarbonChainX and make the Earth greener!
+    </p>
+
+    <div class="hero-btns">
+      <button class="btn">🚀 Get Started</button>
+      <button class="btn">🔐 Login</button>
+    </div>
+
+    <div class="hero-animation">
+      <lottie-player 
+        src="https://assets5.lottiefiles.com/packages/lf20_jcikwtux.json"  
+        background="transparent"  
+        speed="1"  
+        style="width: 100%; height: 300px;"  
+        loop autoplay>
+      </lottie-player>
+    </div>
+  </section>
+
+  <!-- Features -->
+  <section class="features">
+    <div class="feature-card">
+      <i class="fas fa-leaf"></i>
+      <h3>Eco-Friendly Tracking</h3>
+      <p>Track your daily carbon emissions easily 🌿</p>
+    </div>
+    <div class="feature-card">
+      <i class="fas fa-bolt"></i>
+      <h3>AI Suggestions</h3>
+      <p>Get AI-based tips to reduce energy consumption ⚡</p>
+    </div>
+    <div class="feature-card">
+      <i class="fas fa-globe"></i>
+      <h3>Carbon Offset</h3>
+      <p>Offset emissions with verified carbon credits 🌍</p>
+    </div>
+    <div class="feature-card">
+      <i class="fas fa-chart-line"></i>
+      <h3>Live Dashboard</h3>
+      <p>Interactive analytics & reports in real-time 📊</p>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    © 2025 CarbonChainX | Built for a Sustainable Future 🌱
+  </footer>
+</body>
+</html>
