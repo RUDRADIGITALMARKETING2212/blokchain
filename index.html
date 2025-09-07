@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🌟 Fancy 3D Login with AI Assistant</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
+body{
+  height:100vh;
+  overflow:hidden;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  background: linear-gradient(-45deg,#6a11cb,#2575fc,#f7971e,#ff0844);
+  background-size:400% 400%;
+  animation:gradientBG 15s ease infinite;
+}
+
+@keyframes gradientBG{
+  0%{background-position:0% 50%;}
+  50%{background-position:100% 50%;}
+  100%{background-position:0% 50%;}
+}
+
+.bubble{
+  position:absolute;
+  font-size:24px;
+  animation:float 6s linear infinite;
+  pointer-events:none;
+}
+@keyframes float{
+  0%{transform:translateY(100vh) rotate(0deg);}
+  100%{transform:translateY(-150px) rotate(360deg);}
+}
+
+.login-container{
+  position:relative;
+  background:rgba(255,255,255,0.95);
+  width:360px;
+  padding:40px;
+  border-radius:25px;
+  box-shadow:0 20px 50px rgba(0,0,0,0.5);
+  text-align:center;
+  transition:transform 0.2s ease,box-shadow 0.3s ease;
+  z-index:10;
+  transform-style: preserve-3d;
+}
+.login-container:hover{
+  box-shadow:0 30px 70px rgba(0,0,0,0.6);
+}
+
+.login-container h1{
+  margin-bottom:25px;
+  color:#333;
+  font-weight:700;
+  text-shadow:1px 1px 2px #aaa;
+  transform:translateZ(30px);
+}
+
+.input-field{
+  width:100%;
+  padding:12px 15px;
+  margin:12px 0;
+  border-radius:12px;
+  border:2px solid #ccc;
+  outline:none;
+  transition:0.3s;
+  font-size:16px;
+  transform:translateZ(20px);
+}
+.input-field:focus{
+  border-color:#2575fc;
+  box-shadow:0 0 12px rgba(37,117,252,0.5);
+}
+
+.login-btn{
+  width:100%;
+  padding:14px;
+  margin-top:10px;
+  border:none;
+  border-radius:15px;
+  background: linear-gradient(45deg,#2575fc,#6a11cb);
+  color:white;
+  font-size:16px;
+  font-weight:700;
+  cursor:pointer;
+  transition: all 0.4s ease;
+  transform:translateZ(20px);
+  box-shadow:0 5px 20px rgba(0,0,0,0.3);
+}
+.login-btn:hover{
+  background: linear-gradient(45deg,#ff0844,#f7971e);
+  transform:translateZ(10px) scale(1.08);
+  box-shadow:0 10px 30px rgba(0,0,0,0.5);
+}
+
+.forgot{
+  display:block;
+  margin-top:12px;
+  color:#2575fc;
+  text-decoration:none;
+  font-size:14px;
+  transform:translateZ(20px);
+}
+.forgot:hover{text-decoration:underline;}
+
+#assistant{
+  position:fixed;
+  bottom:30px;
+  right:30px;
+  width:70px;
+  height:70px;
+  background:#2575fc;
+  border-radius:50%;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  color:white;
+  font-size:30px;
+  cursor:pointer;
+  box-shadow:0 5px 20px rgba(0,0,0,0.5);
+  z-index:1000;
+  animation:bounce 2s infinite;
+}
+@keyframes bounce{
+  0%,100%{transform:translateY(0);}
+  50%{transform:translateY(-10px);}
+}
+
+#chatbox{
+  position:fixed;
+  bottom:110px;
+  right:30px;
+  width:320px;
+  max-height:450px;
+  background:white;
+  border-radius:20px;
+  box-shadow:0 15px 40px rgba(0,0,0,0.4);
+  display:none;
+  flex-direction:column;
+  overflow:hidden;
+  z-index:1000;
+}
+#chatbox header{
+  background:#2575fc;
+  color:white;
+  padding:12px;
+  font-weight:bold;
+  font-size:16px;
+}
+#chatContent{
+  flex:1;
+  padding:10px;
+  overflow-y:auto;
+  font-size:14px;
+}
+#chatInput{
+  border:none;
+  border-top:1px solid #ccc;
+  padding:10px;
+  outline:none;
+}
+
+</style>
+</head>
+<body>
+
+<!-- Floating emoji bubbles -->
+<div class="bubble" style="left:10%;">🌟</div>
+<div class="bubble" style="left:20%;">✨</div>
+<div class="bubble" style="left:35%;">💫</div>
+<div class="bubble" style="left:50%;">🌈</div>
+<div class="bubble" style="left:65%;">🔥</div>
+<div class="bubble" style="left:80%;">🎉</div>
+<div class="bubble" style="left:90%;">💎</div>
+
+<div class="login-container" id="loginBox">
+  <h1>🌟 Login</h1>
+  <input type="text" id="username" class="input-field" placeholder="Username" required>
+  <input type="password" id="password" class="input-field" placeholder="Password" required>
+  <button class="login-btn" onclick="login()">Login</button>
+  <a href="#" class="forgot">Forgot Password?</a>
+</div>
+
+<div id="assistant">🤖</div>
+<div id="chatbox">
+  <header>AI Assistant</header>
+  <div id="chatContent"></div>
+  <input type="text" id="chatInput" placeholder="Ask me something...">
+</div>
+
+<script>
+function login(){window.location.href="first.html";}
+
+// 3D tilt effect
+const loginBox=document.getElementById('loginBox');
+document.addEventListener('mousemove',(e)=>{
+  const x=e.clientX/window.innerWidth-0.5;
+  const y=e.clientY/window.innerHeight-0.5;
+  loginBox.style.transform=`rotateY(${x*20}deg) rotateX(${-y*20}deg)`;
+});
+document.addEventListener('mouseleave',()=>{loginBox.style.transform=`rotateY(0deg) rotateX(0deg)`;});
+
+// AI Assistant
+const assistant=document.getElementById('assistant');
+const chatbox=document.getElementById('chatbox');
+const chatContent=document.getElementById('chatContent');
+const chatInput=document.getElementById('chatInput');
+
+assistant.addEventListener('click',()=>{chatbox.style.display=chatbox.style.display==='flex'?'none':'flex';chatbox.style.flexDirection='column';});
+
+chatInput.addEventListener('keypress',function(e){
+  if(e.key==='Enter' && chatInput.value.trim()!==''){
+    const userText=chatInput.value;
+    const userMsg=document.createElement('div');
+    userMsg.style.textAlign='right';userMsg.style.margin='5px';
+    userMsg.innerHTML=`<b>You:</b> ${userText}`;
+    chatContent.appendChild(userMsg);
+
+    // Animated typing effect
+    const botMsg=document.createElement('div');
+    botMsg.style.textAlign='left';botMsg.style.margin='5px';
+    chatContent.appendChild(botMsg);
+
+    let reply="I didn't understand that 🤔";
+    const text=userText.toLowerCase();
+    if(text.includes("username")) reply="Enter your username in the first input field.";
+    else if(text.includes("password")) reply="Enter your password in the second input field.";
+    else if(text.includes("login")) reply="Click the login button to proceed to the index page.";
+    else if(text.includes("help")) reply="I'm here to guide you. Ask me about username, password, or login.";
+    else if(text.includes("hi") || text.includes("hello")) reply="Hello! How can I help you today?";
+
+    let i=0;
+    botMsg.innerHTML="<b>AI:</b> ";
+    function typeWriter(){
+      if(i<reply.length){
+        botMsg.innerHTML+=""+reply.charAt(i);
+        i++;
+        setTimeout(typeWriter,30);
+      }
+    }
+    typeWriter();
+
+    chatContent.scrollTop=chatContent.scrollHeight;
+    chatInput.value='';
+  }
+});
+</script>
+</body>
+</html>
